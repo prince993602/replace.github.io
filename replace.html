@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>replace word</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box3{
+            width: 100%;
+            height: 100vh;
+            /* border: 2px solid red; */
+            position: relative;
+            z-index: 4;
+            background: #f6f6f6;        
+        }
+        textarea{
+        padding: 5px 15px;
+        outline: none;
+        border: 1px solid rgb(16, 16, 158);
+        resize: none;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        font-size: 1.1rem;
+        border-radius: 5px ;
+        font-family: 'Courier New', Courier, monospace;
+        width: 95%;
+        height: 50%;
+        }
+        #btn{
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            padding: 5px 35px;
+            font-size: 1.1rem;
+            border: 1px solid transparent;
+            background-color: #000000;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+           button:hover{
+            background: #31529e;
+        }     
+        .replce-box{
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            border: 1px solid #000;  
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            background-color: #0000001b;
+            backdrop-filter: blur(1px);
+            z-index: 0;
+        }
+        .box{
+            width: 400px;
+            height: 200px;
+            border: 1px solid gray;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+        }
+        @media screen and (max-width:425px) {
+            .box{
+                width: 78%;
+                height: 150px;
+            }
+        }
+        .box input{
+            margin: 8px 18px;
+            padding: 5px 15px;
+            outline: none;
+            border: 1px solid rgb(70, 69, 69);
+        }
+        #rp{
+            padding: 5px 35px;
+            border: 1px solid transparent;
+            color: #fff;
+            background: #000;
+            cursor: pointer;
+            margin: 8px ;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>      
+        <div class="box3">
+            <textarea name="text-area" id="text-area" cols="80" rows="15" placeholder="type something....."></textarea>
+        <button id="btn">Replace</button>
+        </div>
+        <div class="replce-box">
+            <div class="box">
+                <input type="text" name="int1" id="int1" placeholder="replace">
+                <input type="text" name="int2" id="int2" placeholder="replace to">
+                <button id="rp">Replace</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let text = document.getElementById("text-area").value; 
+        let rpbox = document.getElementsByClassName('replce-box')[0];
+        let btn = document.getElementById("btn");
+        btn.onclick = function(){
+        rpbox.style.zIndex = '5';
+        };       
+        let rp = document.getElementById("rp");
+        rp.onclick = function(){
+        let text = document.getElementById("text-area").value;
+            let a = document.getElementById("int1").value;
+            let b = document.getElementById("int2").value;
+            a = a.trim();
+            b = b.trim();
+            let changed =  text.replaceAll(a,b);
+            document.getElementById("text-area").value = changed ;
+           rpbox.style.zIndex = '1';
+        }
+    </script>
+</body>
+</html>
